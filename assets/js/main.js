@@ -232,7 +232,15 @@
         selector: '.cs_lightbox_item',
         subHtmlSelectorRelative: false,
         thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: false,
         mousewheel: true,
+        keyPress: true,
+        preload: 2,
+        download: false,
+        hideBarsDelay: 2500,
+        mode: 'lg-fade',
+        speed: 400,
       });
     });
   }
