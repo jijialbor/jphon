@@ -29,8 +29,19 @@
     return $(selector).length > 0;
   };
 
-  $(window).on('load', function () {
-    preloader();
+  // Hide the loading screen as soon as the page is usable instead of waiting
+  // for every image: when the hero photo is ready, or after 2.5s at most.
+  $(window).on('load', preloader);
+  setTimeout(preloader, 2500);
+
+  $(function () {
+    var heroImg = document.querySelector('.cs_hero_img img');
+    if (heroImg && !heroImg.complete) {
+      heroImg.addEventListener('load', preloader);
+      heroImg.addEventListener('error', preloader);
+    } else {
+      preloader();
+    }
   });
 
   $(function () {
@@ -51,9 +62,12 @@
   /*--------------------------------------------------------------
     1. Preloader
   --------------------------------------------------------------*/
+  var preloaderDone = false;
   function preloader() {
-    $('.cs_preloader_in').fadeOut();
-    $('.cs_preloader').delay(150).fadeOut('slow');
+    if (preloaderDone) return;
+    preloaderDone = true;
+    $('.cs_preloader_in').fadeOut(200);
+    $('.cs_preloader').delay(100).fadeOut(400);
   }
 
   /*--------------------------------------------------------------
