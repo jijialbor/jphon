@@ -2575,6 +2575,13 @@ hr {
   opacity: 0.7;
   top: 0;
   left: 0;
+  z-index: 0;
+}
+
+/* Keep hero content (See Works button, social links) above the particle background */
+.cs_hero.cs_style_1 > .container,
+.cs_hero.cs_style_1 .cs_hero_social_btns {
+  z-index: 2;
 }
 
 @media (max-width: 991px) {
